@@ -1,2 +1,8 @@
 html/
 build/
+main.cpp
+*.elf
+*.nacp
+*.nro
+*.nso
+*.pfs0
