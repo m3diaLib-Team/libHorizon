@@ -1,6 +1,6 @@
-#include "hzn/core/applet.hpp"
+#include "horizon/core/applet.hpp"
 
-namespace hzn {
+namespace horizon {
     Applet::Applet() :
          m_running(true),
          m_currentFrame(0) {
@@ -22,4 +22,4 @@ namespace hzn {
     void Applet::exit() {
         m_running = false;
     }
-} /* hzn */
+} /* horizon */

@@ -7,12 +7,12 @@
 #ifndef APPLET_H
 #define APPLET_H
 
-#include "hzn/libnx.hpp"
+#include "horizon/libnx.hpp"
 
 /**
- * @brief The general hzn-namespace
+ * @brief The general horizon-namespace
  */
-namespace hzn {
+namespace horizon {
    /**
     * @brief The applet class (used for running the app)
     */
@@ -57,6 +57,6 @@ namespace hzn {
        int m_currentFrame;
 
    };
-} /* hzn */
+} /* horizon */
 
 #endif /* end of include guard: APPLET_H */

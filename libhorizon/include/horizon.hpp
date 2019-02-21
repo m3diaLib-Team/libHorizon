@@ -4,37 +4,40 @@
  */
 #pragma once
 
+#include "horizon/libnx.hpp"
+
 // horizon includes
+#include "core/core.hpp"
 
 #ifdef _DOXYGEN_
     /**
-     * @def HZN_DEBUG
-     * @brief If set, this enables NxLink and the HZN_DEBUGPOINT and HZN_BREAKPOINT macros
+     * @def HORIZON_DEBUG
+     * @brief If set, this enables NxLink and the HORIZON_DEBUGPOINT and HORIZON_BREAKPOINT macros
      */
-    #define HZN_DEBUG
+    #define HORIZON_DEBUG
 
      /**
-     * @def HZN_NO_LIBNX
+     * @def HORIZON_NO_LIBNX
      * @brief If set, this disables the automatic inclusion of libnx, allowing you to use your own fork instead
      *
-     * @note This is useful if you use the hzniaLib in places where the official libnx doesn't work.
+     * @note This is useful if you use the horizoniaLib in places where the official libnx doesn't work.
      */
-    #define HZN_NO_LIBNX
+    #define HORIZON_NO_LIBNX
 
     /**
-     * @def HZN_BREAKPOINT
+     * @def HORIZON_BREAKPOINT
      * @brief Pauses the execution and waits for button input
      */
-    #define HZN_BREAKPOINT()
+    #define HORIZON_BREAKPOINT()
 
     /**
-     * @def HZN_DEBUGPOINT
+     * @def HORIZON_DEBUGPOINT
      * @brief Pauses the execution, displays a message and waits for button input
      * @param msg The message to print
      */
-    #define HZN_DEBUGPOINT(msg)
+    #define HORIZON_DEBUGPOINT(msg)
 #endif
-#ifdef HZN_DEBUG
+#ifdef HORIZON_DEBUG
     #include <unistd.h>
     #define TRACE(fmt,...) printf("%s: " fmt "\n", __PRETTY_FUNCTION__, ## __VA_ARGS__)
 
@@ -42,19 +45,19 @@
         if (R_FAILED(socketInitializeDefault()))
             return;
 
-        hzn::priv::nxlinkSocket = nxlinkStdio();
+        horizon::priv::nxlinkSocket = nxlinkStdio();
 
-        if (hzn::priv::nxlinkSocket >= 0)
+        if (horizon::priv::nxlinkSocket >= 0)
             TRACE("printf output now goes to nxlink server");
         else
             socketExit();
     }
 
     static void deinitNxLink() {
-        if (hzn::priv::nxlinkSocket >= 0) {
-            close(hzn::priv::nxlinkSocket);
+        if (horizon::priv::nxlinkSocket >= 0) {
+            close(horizon::priv::nxlinkSocket);
             socketExit();
-            hzn::priv::nxlinkSocket = -1;
+            horizon::priv::nxlinkSocket = -1;
         }
     }
 
@@ -67,6 +70,6 @@
     }
 #else
     #define TRACE(fmt,...) ((void)0)
-    #define HZN_BREAKPOINT()
-    #define HZN_DEBUGPOINT()
+    #define HORIZON_BREAKPOINT()
+    #define HORIZON_DEBUGPOINT()
 #endif
