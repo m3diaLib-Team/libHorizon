@@ -28,4 +28,9 @@ namespace horizon {
     void Applet::exit() {
         m_running = false;
     }
+
+    int Applet::getCurrentFrame() {
+        m_currentFrame = m_currentFrame % 60;
+        return m_currentFrame;
+    }
 } /* horizon */
