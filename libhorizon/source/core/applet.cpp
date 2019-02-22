@@ -1,21 +1,27 @@
 #include "horizon/core/applet.hpp"
+#include "horizon/core/input.hpp"
 
 namespace horizon {
-    Applet::Applet() :
+    Applet::Applet(bool enableNxlinkStdio) :
          m_running(true),
          m_currentFrame(0) {
-
+             consoleInit(NULL);
+             socketInitializeDefault();
+             if (enableNxlinkStdio) nxlinkStdio();
          }
 
     Applet::~Applet() {
-
+        socketExit();
+        consoleExit(NULL);
     }
 
     bool Applet::isRunning() {
         if (!appletMainLoop()) return false;
 
-        hidScanInput();
+        Input::scanInput();
+        consoleUpdate(NULL);
         m_currentFrame++;
+
         return m_running;
     }
 
