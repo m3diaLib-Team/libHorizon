@@ -73,21 +73,31 @@ namespace horizon {
             All       // All players
         };
 
+        /**
+         * @brief Contains all the input data for the current frame
+         */
         struct InputData {
+            /**
+             * @brief Contains input data on a per-player basis
+             */
             struct PlayerInput {
-                int pressedButtons,
-                    downButtons,
-                    releasedButtons;
-
+                /**
+                 * @brief Contains all the information about this player's controller
+                 */
                 struct ControllerData {
-                    bool connected;
+                    bool connected; ///< Whether a controller is connected on this slot
                 };
+
+                int pressedButtons,  ///< Buttons that have been pressed by this player this frame
+                    downButtons,     ///< Buttons that are pressed by this player this frame, regardless whether they were pressed in the last frame or not
+                    releasedButtons; ///< Buttons that have been released by this player this frame
+                ControllerData controllerData; ///< Controller data
             };
 
-            int pressedButtons,
-                downButtons,
-                releasedButtons;
-            PlayerInput playerData[(int) Player::All];
+            int pressedButtons,  ///< Buttons that have been pressed by any player this frame
+                downButtons,     ///< Buttons that are pressed by any player this frame, regardless whether they were pressed in the last frame or not
+                releasedButtons; ///< Buttons that have been released by any player this frame
+            PlayerInput playerData[(int) Player::All]; ///< Input data for every player
         };
 
         /**
@@ -98,6 +108,11 @@ namespace horizon {
             return (hidGetHandheldMode() == 1 ? true : false);
         }
 
+        /**
+         * @brief Returns whether a controller is connected on the given player slot
+         * @param  player The player to check
+         * @return        `true` if the given player is connected, `false` otherwise
+         */
         static inline bool isPlayerConnected(Player player) {
             return hidIsControllerConnected((HidControllerID) player);
         }
