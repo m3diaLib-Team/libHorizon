@@ -8,5 +8,6 @@
 #pragma once
 
 #include "applet.hpp"
+#include "input.hpp"
 
 #endif /* end of include guard: CORE_H */
