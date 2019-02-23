@@ -8,6 +8,7 @@ namespace horizon {
              consoleInit(NULL);
              socketInitializeDefault();
              if (enableNxlinkStdio) nxlinkStdio();
+             appletInitializeGamePlayRecording();
          }
 
     Applet::~Applet() {
