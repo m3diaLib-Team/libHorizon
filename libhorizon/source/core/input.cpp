@@ -7,6 +7,10 @@ namespace horizon {
         hidScanInput();
         u32 keysDown, keysHeld, keysUp;
 
+        m_inputData.pressedButtons  = 0;
+        m_inputData.downButtons     = 0;
+        m_inputData.releasedButtons = 0;
+
         for(short int i = 0; i < (short int) Player::All; ++i) {
             if (isPlayerConnected((Player) i)) {
                 keysDown = hidKeysDown((HidControllerID) i);
