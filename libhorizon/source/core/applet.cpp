@@ -11,6 +11,7 @@ namespace horizon {
          }
 
     Applet::~Applet() {
+        appletEndBlockingHomeButton();
         socketExit();
         consoleExit(NULL);
     }

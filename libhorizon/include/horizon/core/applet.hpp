@@ -47,6 +47,18 @@ namespace horizon {
        void exit();
 
        /**
+        * @brief Sets whether or not to allow the use of the home button
+        * @param allow `true` if the user is allowed to use the home button, `false` otherwise
+        */
+       static inline void allowHomeButton(bool allow) {
+           if (allow) {
+               appletEndBlockingHomeButton();
+           } else {
+               appletBeginBlockingHomeButton(0);
+           }
+       }
+
+       /**
         * @brief Returns the current frame
         * @return The currently drawn frame (ranging from 0 to 59)
         */
