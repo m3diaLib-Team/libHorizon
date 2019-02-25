@@ -7,6 +7,7 @@
 #ifndef APPLET_H
 #define APPLET_H
 
+#include <string>
 #include "horizon/libnx.hpp"
 
 /**
@@ -97,6 +98,27 @@ namespace horizon {
              * @brief Displays the library-applet
              */
             static void show();
+        };
+
+        /**
+         * The player-select screen
+         */
+        class PlayerSelect {
+        public:
+            /**
+             * @brief Represents a user account
+             */
+            struct User {
+                const std::string username; ///< Username
+                long long int userId;       ///< User ID
+                unsigned int iconId;        ///< Icon ID
+                short int backgroundColor;  ///< Background color
+            };
+
+            /**
+             * @brief Displays the library-applet
+             */
+            static User show();
         };
         /** @}*/
 

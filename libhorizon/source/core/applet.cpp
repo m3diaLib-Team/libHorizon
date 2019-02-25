@@ -47,4 +47,54 @@ namespace horizon {
         appletHolderJoin(&applet);
         appletHolderClose(&applet);
     }
+
+    Applet::PlayerSelect::User Applet::PlayerSelect::show() {
+        struct UserReturnData {
+            u64 result;
+            u128 UID;
+        } PACKED;
+
+        struct UserReturnData outdata;
+
+        AppletHolder aph;
+        AppletStorage ast;
+        AppletStorage hast1;
+        LibAppletArgs args;
+
+        u8 indata[0xA0] = { 0 };
+        indata[0x96] = 1;
+
+        appletCreateLibraryApplet(&aph, AppletId_playerSelect, LibAppletMode_AllForeground);
+        libappletArgsCreate(&args, 0);
+        libappletArgsPush(&args, &aph);
+
+        appletCreateStorage(&hast1, 0xA0);
+
+        appletStorageWrite(&hast1, 0, indata, 0xA0);
+        appletHolderPushInData(&aph, &hast1);
+        appletHolderStart(&aph);
+
+        while (appletHolderWaitInteractiveOut(&aph));
+
+        appletHolderJoin(&aph);
+        appletHolderPopOutData(&aph, &ast);
+        appletStorageRead(&ast, 0, &outdata, 24);
+
+        appletHolderClose(&aph);
+        appletStorageClose(&ast);
+
+        AccountProfile profile;
+        AccountProfileBase base;
+        AccountUserData data;
+
+        accountGetProfile(&profile, outdata.UID);
+        accountProfileGet(&profile, &data, &base);
+
+        return {
+            base.username,
+            (long long int) base.userID,
+            data.iconID,
+            data.iconBackgroundColorID
+        };
+    }
 } /* horizon */
