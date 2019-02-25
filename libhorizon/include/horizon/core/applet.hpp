@@ -85,6 +85,21 @@ namespace horizon {
          */
         int getCurrentFrame();
 
+        /** @addtogroup Library-Applets
+         *  @{
+         */
+        /**
+         * The WiFi-select screen
+         */
+        class WiFiSelect {
+        public:
+            /**
+             * @brief Displays the library-applet
+             */
+            static void show();
+        };
+        /** @}*/
+
     private:
         /* data */
         bool m_running;

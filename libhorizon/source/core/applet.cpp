@@ -35,4 +35,16 @@ namespace horizon {
         m_currentFrame = m_currentFrame % 60;
         return m_currentFrame;
     }
+
+    // lib-applets
+    void Applet::WiFiSelect::show() {
+        AppletHolder applet;
+
+        appletCreateLibraryApplet(&applet, AppletId_netConnect, LibAppletMode_AllForeground);
+
+        appletHolderStart(&applet);
+        while (appletHolderWaitInteractiveOut(&applet));
+        appletHolderJoin(&applet);
+        appletHolderClose(&applet);
+    }
 } /* horizon */
