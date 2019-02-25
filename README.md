@@ -1,5 +1,5 @@
 # libHorizon
-A C++ framework to create powerful homebrew with ease.
+A C++ framework to create powerful Nintendo Switch homebrew with ease.
 
 ## FAQ/Troubleshooting
 #### My application has no console output
