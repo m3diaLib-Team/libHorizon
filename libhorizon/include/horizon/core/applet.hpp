@@ -19,13 +19,6 @@ namespace horizon {
    class Applet {
    public:
        /**
-        * @brief Defines the ids of various applets
-        */
-       enum class AppletId {
-           None,
-       };
-
-       /**
         * @brief Creates the applet
         * @param enableNxlinkStdio Whether you want to enable nxlinkStdio or not
         */
