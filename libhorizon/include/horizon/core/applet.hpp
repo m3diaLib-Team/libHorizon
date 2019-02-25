@@ -18,6 +18,13 @@ namespace horizon {
      */
     class Applet {
     public:
+        /**
+         * @brief Defines the different operation modes of the console
+         */
+        enum class OperationMode {
+            Handheld, ///< Handheld
+            Docked    ///< Docked
+        };
 
         /**
          * @brief Creates the applet
@@ -62,6 +69,14 @@ namespace horizon {
             } else {
                 appletSetGamePlayRecordingState(0);
             }
+        }
+
+        /**
+         * @brief Returns the current operation mode of the console
+         * @return The current operation mode
+         */
+        static inline OperationMode getOperationMode() {
+            return (OperationMode) appletGetOperationMode();
         }
 
         /**
