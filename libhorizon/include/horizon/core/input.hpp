@@ -24,7 +24,7 @@ namespace horizon {
             B = (1U<<( 1 )),                                      ///< B
             X = (1U<<( 2 )),                                      ///< X
             Y = (1U<<( 3 )),                                      ///< Y
-            LeftStick = (1U<<( 4 )),                              ///< Left stick test
+            LeftStick = (1U<<( 4 )),                              ///< Left stick pressed
             RightStick = (1U<<( 5 )),                             ///< Right stick pressed
             L = (1U<<( 6 )),                                      ///< L
             R = (1U<<( 7 )),                                      ///< R
