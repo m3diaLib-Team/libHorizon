@@ -7,7 +7,7 @@
 #include "horizon/libnx.hpp"
 
 // horizon includes
-#include "core/core.hpp"
+#include "horizon/core/core.hpp"
 
 #ifdef _DOXYGEN_
     /**
