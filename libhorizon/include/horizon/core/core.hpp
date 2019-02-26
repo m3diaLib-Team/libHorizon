@@ -9,5 +9,6 @@
 
 #include "applet.hpp"
 #include "input.hpp"
+#include "parameter.hpp"
 
 #endif /* end of include guard: CORE_H */
