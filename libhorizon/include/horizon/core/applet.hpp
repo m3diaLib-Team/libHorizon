@@ -120,6 +120,88 @@ namespace horizon {
              */
             static User show();
         };
+
+        /**
+         * @brief The error-screen applet
+         */
+        class Error {
+        public:
+            /**
+             * @brief Default constructor
+             */
+            Error();
+
+            /**
+             * @brief Quickly displays an error with the given title and description
+             * @param title       The title
+             * @param description The description (shown when the user clicks on "Details")
+             */
+            static void show(const std::string& title, const std::string& description, int minorCode = 0, int majorCode = 2000);
+
+            /**
+             * @brief Displays the error
+             */
+            void show();
+
+            /**
+             * @brief Sets the title of the error
+             * @param title The title
+             */
+            void setTitle(const std::string& title);
+
+            /**
+             * @brief Returns the title of the error
+             * @return The title
+             */
+            const std::string& getTitle();
+
+            /**
+             * @brief Sets the description of the error
+             * @param description The description (shown when the user clicks on "Details")
+             */
+            void setDescription(const std::string& description);
+
+            /**
+             * @brief Returns the description of the error
+             * @return The description (shown when the user clicks on "Details")
+             */
+            const std::string& getDescription();
+
+            /**
+             * @brief Sets the major code of the error
+             * @param code The major code (the first part of the error code)
+             */
+            void setMajorCode(int code);
+
+            /**
+             * @brief Returns the major code of the error
+             * @return The major code (the first part of the error code)
+             */
+            int getMajorCode();
+
+            /**
+             * @brief Sets the major code of the error
+             * @param code The major code (the first part of the error code)
+             */
+            void setMinorCode(int code);
+
+            /**
+             * @brief Returns the minor code of the error
+             * @return The minor code (the second part of the error code)
+             */
+            int getMinorCode();
+
+            /**
+             * @brief Sets the code of the error
+             * @param minorCode The minor code (the second part of the error code)
+             * @param majorCode The major code (the first part of the error code)
+             */
+            void setErrorCode(int minorCode, int majorCode = 2000);
+        private:
+            /* data */
+            std::string m_title, m_description;
+            int m_majorCode, m_minorCode;
+        };
         /** @}*/
 
     private:

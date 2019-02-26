@@ -1,3 +1,4 @@
+#include <cstring>
 #include "horizon/core/applet.hpp"
 #include "horizon/core/input.hpp"
 
@@ -96,5 +97,76 @@ namespace horizon {
             data.iconID,
             data.iconBackgroundColorID
         };
+    }
+
+    Applet::Error::Error() :
+        m_title(""),
+        m_description(""),
+        m_majorCode(2000),
+        m_minorCode(0) { /* do nothing */ }
+
+    void Applet::Error::show(const std::string& title, const std::string& description, int minorCode, int majorCode) {
+        AppletHolder err;
+        AppletStorage errStor;
+        LibAppletArgs errArgs;
+
+        appletCreateLibraryApplet(&err, AppletId_error, LibAppletMode_AllForeground);
+        libappletArgsCreate(&errArgs, 1);
+        libappletArgsPush(&errArgs, &err);
+        appletCreateStorage(&errStor, 4120);
+        u8 args[4120] = {0};
+        args[0] = 1;
+
+        *(u64*)&args[8] = majorCode;
+        *(u64*)&args[12] = minorCode;
+        strcpy((char*) &args[24], title.c_str());
+        strcpy((char*) &args[2072], description.c_str());
+        appletStorageWrite(&errStor, 0, args, 4120);
+        appletHolderPushInData(&err, &errStor);
+
+        appletHolderStart(&err);
+        appletHolderJoin(&err);
+        appletHolderClose(&err);
+    }
+
+    void Applet::Error::show() {
+        show(m_title, m_description, m_minorCode, m_majorCode);
+    }
+
+    void Applet::Error::setTitle(const std::string& title) {
+        m_title = title;
+    }
+
+    const std::string& Applet::Error::getTitle() {
+        return m_title;
+    }
+
+    void Applet::Error::setDescription(const std::string& description) {
+        m_description = description;
+    }
+
+    const std::string& Applet::Error::getDescription() {
+        return m_description;
+    }
+
+    void Applet::Error::setMajorCode(int code) {
+        m_majorCode = code;
+    }
+
+    int Applet::Error::getMajorCode() {
+        return m_majorCode;
+    }
+
+    void Applet::Error::setMinorCode(int code) {
+        m_minorCode = code;
+    }
+
+    int Applet::Error::getMinorCode() {
+        return m_minorCode;
+    }
+
+    void Applet::Error::setErrorCode(int minorCode, int majorCode) {
+        m_minorCode = minorCode;
+        m_majorCode = majorCode;
     }
 } /* horizon */
