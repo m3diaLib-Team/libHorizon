@@ -6,3 +6,4 @@ main.cpp
 *.nro
 *.nso
 *.pfs0
+Makefile.test
