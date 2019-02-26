@@ -90,7 +90,7 @@ namespace horizon {
          *  @{
          */
         /**
-         * The WiFi-select screen
+         * @brief The WiFi-select screen
          */
         class WiFiSelect {
         public:
@@ -101,7 +101,7 @@ namespace horizon {
         };
 
         /**
-         * The player-select screen
+         * @brief The player-select screen
          */
         class PlayerSelect {
         public:
