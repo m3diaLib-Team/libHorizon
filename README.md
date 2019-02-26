@@ -1,4 +1,4 @@
-# libHorizon [![Build Status](https://travis-ci.org/m3diaLib-Team/libHorizon.svg?branch=develop)](https://travis-ci.org/m3diaLib-Team/libHorizon)
+# libHorizon [![Build Status](https://travis-ci.org/m3diaLib-Team/libHorizon.svg?branch=develop)](https://travis-ci.org/m3diaLib-Team/libHorizon)[![CodeFactor](https://www.codefactor.io/repository/github/m3dialib-team/libhorizon/badge)](https://www.codefactor.io/repository/github/m3dialib-team/libhorizon)
 A C++ framework to create powerful Nintendo Switch homebrew with ease.
 
 ## FAQ/Troubleshooting
