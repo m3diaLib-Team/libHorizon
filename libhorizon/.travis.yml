@@ -1,0 +1,26 @@
+language: cpp
+dist: trusty
+sudo: required
+compiler:
+  - gcc
+os:
+  - linux
+before_install:
+  - wget https://github.com/devkitPro/pacman/releases/download/devkitpro-pacman-1.0.1/devkitpro-pacman.deb
+  - sudo dpkg -i devkitpro-pacman.deb
+  - sudo dkp-pacman -S switch-dev --noconfirm
+script:
+  - make -C libhorizon/
+branches:
+  only:
+    - master
+    - develop
+notifications:
+  email:
+    recipents:
+      - me@stunthacks.eu
+    on_success: never
+    on_failure: always
+env:
+  global:
+    - DEVKITPRO="/opt/devkitpro"
