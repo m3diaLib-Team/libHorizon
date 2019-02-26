@@ -9,6 +9,7 @@
 
 #include "applet.hpp"
 #include "input.hpp"
+#include "mutex.hpp"
 #include "parameter.hpp"
 
 #endif /* end of include guard: CORE_H */
