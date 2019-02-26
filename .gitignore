@@ -1,5 +1,8 @@
 html/
 build/
+lib/
+release/
+debug/
 main.cpp
 *.elf
 *.nacp
