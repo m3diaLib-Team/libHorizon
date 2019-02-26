@@ -58,31 +58,34 @@ namespace horizon {
         struct UserReturnData outdata;
 
         AppletHolder aph;
-        AppletStorage ast;
-        AppletStorage hast1;
+        AppletStorage outputStorage;
+        AppletStorage inputStorage, commonArgs;
         LibAppletArgs args;
 
         u8 indata[0xA0] = { 0 };
+        indata[0x0] = 0;
         indata[0x96] = 1;
 
         appletCreateLibraryApplet(&aph, AppletId_playerSelect, LibAppletMode_AllForeground);
         libappletArgsCreate(&args, 0);
         libappletArgsPush(&args, &aph);
 
-        appletCreateStorage(&hast1, 0xA0);
+        appletCreateStorage(&inputStorage, 0xA0);
+        writeCommonArguments(commonArgs, 0);
 
-        appletStorageWrite(&hast1, 0, indata, 0xA0);
-        appletHolderPushInData(&aph, &hast1);
+        appletStorageWrite(&inputStorage, 0, indata, 0xA0);
+        appletHolderPushInData(&aph, &commonArgs);
+        appletHolderPushInData(&aph, &inputStorage);
         appletHolderStart(&aph);
 
         while (appletHolderWaitInteractiveOut(&aph));
 
         appletHolderJoin(&aph);
-        appletHolderPopOutData(&aph, &ast);
-        appletStorageRead(&ast, 0, &outdata, 24);
+        appletHolderPopOutData(&aph, &outputStorage);
+        appletStorageRead(&outputStorage, 0, &outdata, 24);
 
         appletHolderClose(&aph);
-        appletStorageClose(&ast);
+        appletStorageClose(&outputStorage);
 
         AccountProfile profile;
         AccountProfileBase base;
@@ -107,13 +110,16 @@ namespace horizon {
 
     void Applet::Error::show(const std::string& title, const std::string& description, int minorCode, int majorCode) {
         AppletHolder err;
-        AppletStorage errStor;
+        AppletStorage errStor, commonArgs;
         LibAppletArgs errArgs;
 
         appletCreateLibraryApplet(&err, AppletId_error, LibAppletMode_AllForeground);
         libappletArgsCreate(&errArgs, 1);
         libappletArgsPush(&errArgs, &err);
+
         appletCreateStorage(&errStor, 4120);
+        writeCommonArguments(commonArgs);
+
         u8 args[4120] = {0};
         args[0] = 1;
 
@@ -122,7 +128,9 @@ namespace horizon {
         strcpy((char*) &args[24], title.c_str());
         strcpy((char*) &args[2072], description.c_str());
         appletStorageWrite(&errStor, 0, args, 4120);
+
         appletHolderPushInData(&err, &errStor);
+        appletHolderPushInData(&err, &commonArgs);
 
         appletHolderStart(&err);
         appletHolderJoin(&err);
@@ -168,5 +176,19 @@ namespace horizon {
     void Applet::Error::setErrorCode(int minorCode, int majorCode) {
         m_minorCode = minorCode;
         m_majorCode = majorCode;
+    }
+
+    // private
+    void Applet::writeCommonArguments(AppletStorage& t_storage, int t_version) {
+        appletCreateStorage(&t_storage, 0x20);
+        u8 args[0x20] = {0};
+
+        args[0x0] = t_version; // version
+        args[0x4] = 0x20;      // size
+        args[0xC] = 0;         // theme color
+        args[0x10] = 0;        // play startup sound
+        args[0x18] = svcGetSystemTick(); // system tick
+
+        appletStorageWrite(&t_storage, 0, args, 0x20);
     }
 } /* horizon */
