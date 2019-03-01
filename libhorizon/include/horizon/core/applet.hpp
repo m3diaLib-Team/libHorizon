@@ -123,6 +123,7 @@ namespace horizon {
 
         /**
          * @brief The error-screen applet
+         * @warning This creates an entry in the error-log in the system settings that contains the error-code, the title and the description as well as the app.
          */
         class Error {
         public:
