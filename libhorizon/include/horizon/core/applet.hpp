@@ -134,10 +134,12 @@ namespace horizon {
 
             /**
              * @brief Quickly displays an error with the given title and description
-             * @param title       The title
-             * @param description The description (shown when the user clicks on "Details")
+             * @param title           The title
+             * @param description     The description (shown when the user clicks on "Details")
+             * @param moduleCode      The module code (the second part of the error code)
+             * @param descriptionCode The description code (the first part of the error code)
              */
-            static void show(const std::string& title, const std::string& description, int minorCode = 0, int majorCode = 2000);
+            static void show(const std::string& title, const std::string& description, int moduleCode = 0, int descriptionCode = 2000);
 
             /**
              * @brief Displays the error
@@ -169,39 +171,39 @@ namespace horizon {
             const std::string& getDescription();
 
             /**
-             * @brief Sets the major code of the error
-             * @param code The major code (the first part of the error code)
+             * @brief Sets the module code of the error
+             * @param code The module code (the first part of the error code)
              */
-            void setMajorCode(int code);
+            void setModuleCode(int code);
 
             /**
-             * @brief Returns the major code of the error
-             * @return The major code (the first part of the error code)
+             * @brief Returns the module code of the error
+             * @return The module code (the first part of the error code)
              */
-            int getMajorCode();
+            int getModuleCode();
 
             /**
-             * @brief Sets the major code of the error
-             * @param code The major code (the first part of the error code)
+             * @brief Sets the description code of the error
+             * @param code The description code (the second part of the error code)
              */
-            void setMinorCode(int code);
+            void setDescriptionCode(int code);
 
             /**
-             * @brief Returns the minor code of the error
-             * @return The minor code (the second part of the error code)
+             * @brief Returns the description code of the error
+             * @return The description code (the second part of the error code)
              */
-            int getMinorCode();
+            int getDescriptionCode();
 
             /**
              * @brief Sets the code of the error
-             * @param minorCode The minor code (the second part of the error code)
-             * @param majorCode The major code (the first part of the error code)
+             * @param module      The module code (the second part of the error code)
+             * @param description The description code (the first part of the error code)
              */
-            void setErrorCode(int minorCode, int majorCode = 2000);
+            void setErrorCode(int module, int description);
         private:
             /* data */
             std::string m_title, m_description;
-            int m_majorCode, m_minorCode;
+            int m_moduleCode, m_descriptionCode;
         };
         /** @}*/
 

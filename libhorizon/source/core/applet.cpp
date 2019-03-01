@@ -105,10 +105,10 @@ namespace horizon {
     Applet::Error::Error() :
         m_title(""),
         m_description(""),
-        m_majorCode(2000),
-        m_minorCode(0) { /* do nothing */ }
+        m_moduleCode(2000),
+        m_descriptionCode(0) { /* do nothing */ }
 
-    void Applet::Error::show(const std::string& title, const std::string& description, int minorCode, int majorCode) {
+    void Applet::Error::show(const std::string& title, const std::string& description, int descriptionCode, int moduleCode) {
         AppletHolder err;
         AppletStorage errStor, commonArgs;
         LibAppletArgs errArgs;
@@ -123,8 +123,8 @@ namespace horizon {
         u8 args[4120] = {0};
         args[0] = 1;
 
-        *(u64*)&args[8] = majorCode;
-        *(u64*)&args[12] = minorCode;
+        *(u64*)&args[8] = moduleCode;
+        *(u64*)&args[12] = descriptionCode;
         strcpy((char*) &args[24], title.c_str());
         strcpy((char*) &args[2072], description.c_str());
         appletStorageWrite(&errStor, 0, args, 4120);
@@ -138,7 +138,7 @@ namespace horizon {
     }
 
     void Applet::Error::show() {
-        show(m_title, m_description, m_minorCode, m_majorCode);
+        show(m_title, m_description, m_descriptionCode, m_moduleCode);
     }
 
     void Applet::Error::setTitle(const std::string& title) {
@@ -157,25 +157,25 @@ namespace horizon {
         return m_description;
     }
 
-    void Applet::Error::setMajorCode(int code) {
-        m_majorCode = code;
+    void Applet::Error::setModuleCode(int code) {
+        m_moduleCode = code;
     }
 
-    int Applet::Error::getMajorCode() {
-        return m_majorCode;
+    int Applet::Error::getModuleCode() {
+        return m_moduleCode;
     }
 
-    void Applet::Error::setMinorCode(int code) {
-        m_minorCode = code;
+    void Applet::Error::setDescriptionCode(int code) {
+        m_descriptionCode = code;
     }
 
-    int Applet::Error::getMinorCode() {
-        return m_minorCode;
+    int Applet::Error::getDescriptionCode() {
+        return m_descriptionCode;
     }
 
-    void Applet::Error::setErrorCode(int minorCode, int majorCode) {
-        m_minorCode = minorCode;
-        m_majorCode = majorCode;
+    void Applet::Error::setErrorCode(int module, int description) {
+        m_moduleCode = module;
+        m_descriptionCode = description;
     }
 
     // private
