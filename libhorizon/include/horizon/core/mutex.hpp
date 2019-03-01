@@ -7,7 +7,7 @@
 
 #pragma once
 
-struct __local_pthread_mutex_t;
+#include <sys/lock.h>
 
 namespace horizon {
     /**
@@ -39,6 +39,7 @@ namespace horizon {
 
     private:
         /* data */
+        typedef _LOCK_RECURSIVE_T RMutex;
         RMutex m_mutex;
     };
 } /* horizon */
