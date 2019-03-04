@@ -59,7 +59,6 @@ namespace horizon {
 
         AppletHolder aph;
         AppletStorage outputStorage;
-        AppletStorage inputStorage, commonArgs;
         LibAppletArgs args;
 
         u8 indata[0xA0] = { 0 };
@@ -69,13 +68,8 @@ namespace horizon {
         appletCreateLibraryApplet(&aph, AppletId_playerSelect, LibAppletMode_AllForeground);
         libappletArgsCreate(&args, 0);
         libappletArgsPush(&args, &aph);
+        libappletPushInData(&aph, &indata, sizeof(indata));
 
-        appletCreateStorage(&inputStorage, 0xA0);
-        writeCommonArguments(commonArgs, 0);
-
-        appletStorageWrite(&inputStorage, 0, indata, 0xA0);
-        appletHolderPushInData(&aph, &commonArgs);
-        appletHolderPushInData(&aph, &inputStorage);
         appletHolderStart(&aph);
 
         while (appletHolderWaitInteractiveOut(&aph));
@@ -169,19 +163,5 @@ namespace horizon {
     void Applet::Error::setErrorCode(int module, int description) {
         m_moduleCode = module;
         m_descriptionCode = description;
-    }
-
-    // private
-    void Applet::writeCommonArguments(AppletStorage& t_storage, int t_version) {
-        appletCreateStorage(&t_storage, 0x20);
-        u8 args[0x20] = {0};
-
-        args[0x0] = t_version; // version
-        args[0x4] = 0x20;      // size
-        args[0xC] = 0;         // theme color
-        args[0x10] = 0;        // play startup sound
-        args[0x18] = svcGetSystemTick(); // system tick
-
-        appletStorageWrite(&t_storage, 0, args, 0x20);
     }
 } /* horizon */

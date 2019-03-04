@@ -219,8 +219,6 @@ namespace horizon {
         /** @}*/
 
     private:
-        static void writeCommonArguments(AppletStorage& t_storage, int t_version = 1);
-
         /* data */
         bool m_running;
         int m_currentFrame;
