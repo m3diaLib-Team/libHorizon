@@ -127,7 +127,6 @@ namespace horizon {
     private:
         /* data */
         short m_red, m_green, m_blue, m_alpha;
-
     };
 } /* horizon */
 
