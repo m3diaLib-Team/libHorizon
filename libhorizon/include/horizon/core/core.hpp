@@ -2,8 +2,8 @@
  * @file core.hpp
  * @brief Includes all core files of libhorizon
  */
-#ifndef CORE_H
-#define CORE_H
+#ifndef CORE_HPP
+#define CORE_HPP
 
 #pragma once
 
@@ -11,5 +11,6 @@
 #include "input.hpp"
 #include "mutex.hpp"
 #include "parameter.hpp"
+#include "thread.hpp"
 
-#endif /* end of include guard: CORE_H */
+#endif /* end of include guard: CORE_HPP */
