@@ -114,8 +114,8 @@ namespace horizon {
         c.customText = true;
         c.module = moduleCode;
         c.description = descriptionCode;
-        strncpy(c.shortDescription, title.c_str(), 0x800);
-        strncpy(c.detailedDescription, description.c_str(), sizeof(c.detailedDescription));
+        strncpy(c.shortDescription, title.c_str(), sizeof(c.shortDescription) - 1);
+        strncpy(c.detailedDescription, description.c_str(), sizeof(c.detailedDescription) - 1);
 
         libappletPushInData(&err, &c, sizeof(ErrorConfig));
 
