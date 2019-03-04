@@ -200,6 +200,7 @@ namespace horizon {
              * @param description The description code (the first part of the error code)
              */
             void setErrorCode(int module, int description);
+
         private:
             /* data */
             std::string m_title, m_description;
