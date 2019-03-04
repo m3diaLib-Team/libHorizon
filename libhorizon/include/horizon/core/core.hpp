@@ -12,5 +12,6 @@
 #include "mutex.hpp"
 #include "parameter.hpp"
 #include "thread.hpp"
+#include "time.hpp"
 
 #endif /* end of include guard: CORE_HPP */
