@@ -12,3 +12,6 @@ If you want to disable nxlink-Stdio, just pass `false` to your `horizon::Applet`
 
 #### Can you please implement X?
 If a stable release of libhorizon doesn't have a specific feature you desire, you're free to create an issue to request it. Please note that not all features are planned to be implemented in libhorizon. If you implemented a feature yourself and want to add it to libhorizon, feel free to create a [pull request](https://github.com/m3diaLib-Team/libHorizon/pull/new/develop).
+
+## Mirrors
+ * [GitLab](https://gitlab.com/StuntHacks/libhorizon)
