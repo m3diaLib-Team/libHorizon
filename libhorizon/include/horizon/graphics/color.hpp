@@ -1,6 +1,6 @@
 /**
  * @file color.hpp
- * @brief Defines the color class as well as some basic colors
+ * @brief Defines the color class
  */
 #ifndef COLOR_HPP
 #define COLOR_HPP
