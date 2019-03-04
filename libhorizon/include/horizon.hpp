@@ -8,6 +8,7 @@
 
 // horizon includes
 #include "horizon/core/core.hpp"
+#include "horizon/graphics/graphics.hpp"
 
 #ifdef _DOXYGEN_
     /**
