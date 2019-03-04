@@ -202,6 +202,16 @@ namespace horizon {
             void setErrorCode(int module, int description);
 
         private:
+            struct ErrorConfig {
+                u8 customText;
+                u8 unk[7];
+                u32 module;
+                u32 description;
+                u8 unk2[8];
+                char shortDescription[0x800];
+                char detailedDescription[0x800];
+            };
+
             /* data */
             std::string m_title, m_description;
             int m_moduleCode, m_descriptionCode;

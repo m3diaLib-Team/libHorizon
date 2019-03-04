@@ -110,27 +110,20 @@ namespace horizon {
 
     void Applet::Error::show(const std::string& title, const std::string& description, int descriptionCode, int moduleCode) {
         AppletHolder err;
-        AppletStorage errStor, commonArgs;
         LibAppletArgs errArgs;
 
         appletCreateLibraryApplet(&err, AppletId_error, LibAppletMode_AllForeground);
         libappletArgsCreate(&errArgs, 1);
         libappletArgsPush(&errArgs, &err);
 
-        appletCreateStorage(&errStor, 4120);
-        writeCommonArguments(commonArgs);
+        ErrorConfig c = {0};
+        c.customText = true;
+        c.module = moduleCode;
+        c.description = descriptionCode;
+        strncpy(c.shortDescription, title.c_str(), 0x800);
+        strncpy(c.detailedDescription, description.c_str(), sizeof(c.detailedDescription));
 
-        u8 args[4120] = {0};
-        args[0] = 1;
-
-        *(u64*)&args[8] = moduleCode;
-        *(u64*)&args[12] = descriptionCode;
-        strcpy((char*) &args[24], title.c_str());
-        strcpy((char*) &args[2072], description.c_str());
-        appletStorageWrite(&errStor, 0, args, 4120);
-
-        appletHolderPushInData(&err, &errStor);
-        appletHolderPushInData(&err, &commonArgs);
+        libappletPushInData(&err, &c, sizeof(ErrorConfig));
 
         appletHolderStart(&err);
         appletHolderJoin(&err);
