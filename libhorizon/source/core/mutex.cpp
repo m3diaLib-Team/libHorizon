@@ -1,4 +1,4 @@
-#include <switch.h>
+#include "horizon/libnx.hpp"
 #include "horizon/core/mutex.hpp"
 
 namespace horizon {

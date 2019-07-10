@@ -1,4 +1,5 @@
 #include <cstring>
+#include "horizon/libnx.hpp"
 #include "horizon/core/applet.hpp"
 #include "horizon/core/input.hpp"
 
