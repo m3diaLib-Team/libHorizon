@@ -8,7 +8,6 @@
 #define APPLET_H
 
 #include <string>
-#include "horizon/libnx.hpp"
 
 /**
  * @brief The general horizon-namespace
