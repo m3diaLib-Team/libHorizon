@@ -33,7 +33,22 @@ In order to make reading code easier, stick to the following naming conventions:
 Use `m_thisFormat` for **private** member variables.
 **Note:** For struct members and public/protected members, use `camelCase` without a prefix instead.
 
-## Macros
+## Pointer and references
+ * When declaring a pointer or reference, always have the asterisk or ampersand at the **end** of the _type_:
+ ```cpp
+    int* address;
+    T& reference;
+    const int* constAddress;
+    const T& constRerence;
+ ```
+ * When declaring a multiple pointers or references, always have the asterisk or ampersand at the **beginning** of the _name_:
+ ```cpp
+    int *addr1,
+        *addr2;
+    T   &ref1,
+        &ref2;
+ ```
+
 Try to stay away from macros. If you do use them, though, capitalize them `LIKE_THIS`.
 
 ## Files
