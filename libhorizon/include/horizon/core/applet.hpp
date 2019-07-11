@@ -64,11 +64,7 @@ namespace horizon {
          * @param enable Whether or not to enable video recording
          */
         static inline void enableVideoRecording(bool enable) {
-            if (enable) {
-                appletSetGamePlayRecordingState(1);
-            } else {
-                appletSetGamePlayRecordingState(0);
-            }
+            appletSetGamePlayRecordingState(enable ? 1 : 0);
         }
 
         /**
