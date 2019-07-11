@@ -40,12 +40,12 @@ namespace horizon {
         /**
          * @brief Returns if the applet is still running
          */
-        bool isRunning();
+        static bool isRunning();
 
         /**
          * @brief Exits the applet
          */
-        void exit();
+        static void exit();
 
         /**
          * @brief Sets whether or not to allow the use of the home button
@@ -219,8 +219,8 @@ namespace horizon {
 
     private:
         /* data */
-        bool m_running;
-        int m_currentFrame;
+        static bool m_running;
+        static int m_currentFrame;
     };
 } /* horizon */
 

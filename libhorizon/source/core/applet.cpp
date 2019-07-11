@@ -4,13 +4,18 @@
 #include "horizon/core/input.hpp"
 
 namespace horizon {
-    Applet::Applet(bool enableNxlinkStdio) :
-         m_running(true),
-         m_currentFrame(0) {
-             consoleInit(NULL);
-             socketInitializeDefault();
-             if (enableNxlinkStdio) nxlinkStdio();
-             appletInitializeGamePlayRecording();
+    bool Applet::m_running = false;
+    int Applet::m_currentFrame = 0;
+
+    Applet::Applet(bool enableNxlinkStdio) {
+             if (!m_running) {
+                 consoleInit(NULL);
+                 socketInitializeDefault();
+                 if (enableNxlinkStdio) nxlinkStdio();
+                 appletInitializeGamePlayRecording();
+
+                 m_running = true;
+             }
          }
 
     Applet::~Applet() {
