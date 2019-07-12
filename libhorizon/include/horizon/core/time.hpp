@@ -10,7 +10,7 @@
 
 namespace horizon {
     /**
-     * @brief The time class, used for representing time
+     * @brief Represents time, down to a resolution of milliseconds
      */
     class Time {
     public:

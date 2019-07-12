@@ -11,7 +11,7 @@ namespace horizon {
     class Mutex;
 
     /**
-     * @brief The Lock class used to lock mutexes
+     * @brief Used to automatically and easily lock and unlock mutexes based on scope
      */
     class Lock {
     public:

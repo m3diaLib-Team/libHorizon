@@ -11,7 +11,7 @@
 
 namespace horizon {
     /**
-     * @brief The mutex class
+     * @brief A mutex
      */
     class Mutex {
     public:

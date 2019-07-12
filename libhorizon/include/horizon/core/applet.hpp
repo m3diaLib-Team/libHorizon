@@ -14,7 +14,7 @@
  */
 namespace horizon {
     /**
-     * @brief The applet class (used for running the app)
+     * @brief Used for running the app and interacting with the system
      */
     class Applet {
     public:

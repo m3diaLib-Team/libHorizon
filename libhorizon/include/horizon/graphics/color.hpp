@@ -9,7 +9,7 @@
 
 namespace horizon {
     /**
-     * @brief The color class
+     * @brief Represents a color
      */
     class Color {
     public:
