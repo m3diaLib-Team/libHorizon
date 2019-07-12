@@ -9,7 +9,6 @@ namespace horizon {
 
     Applet::Applet(bool enableNxlinkStdio) {
              if (!m_running) {
-                 consoleInit(NULL);
                  socketInitializeDefault();
                  if (enableNxlinkStdio) nxlinkStdio();
                  appletInitializeGamePlayRecording();
@@ -21,7 +20,6 @@ namespace horizon {
     Applet::~Applet() {
         appletEndBlockingHomeButton();
         socketExit();
-        consoleExit(NULL);
     }
 
     bool Applet::isRunning() {
