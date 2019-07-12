@@ -20,97 +20,73 @@ namespace horizon {
 
         /**
          * @brief Creates a color using a red, green and blue value
-         * @param r The red value
-         * @param g The green value
-         * @param b The blue value
+         * @param r The red value (0.0-1.0)
+         * @param g The green value (0.0-1.0)
+         * @param b The blue value (0.0-1.0)
          */
-        Color(short r, short g, short b);
+        Color(float r, float g, float b);
 
         /**
          * @brief Creates a color using a red, green, blue and alpha value
-         * @param r The red value
-         * @param g The green value
-         * @param b The blue value
-         * @param a The alpha value
-         */
-        Color(short r, short g, short b, short a);
-
-        /**
-         * @brief Creates a color using a red, green, blue and alpha value
-         * @param r The red value
-         * @param g The green value
-         * @param b The blue value
+         * @param r The red value (0.0-1.0)
+         * @param g The green value (0.0-1.0)
+         * @param b The blue value (0.0-1.0)
          * @param a The alpha value (0.0-1.0)
          */
-        Color(short r, short g, short b, float a);
+        Color(float r, float g, float b, float a);
 
         /**
          * @brief Sets the red, green and blue value of the color
-         * @param r The red value
-         * @param g The green value
-         * @param b The blue value
+         * @param r The red value (0.0-1.0)
+         * @param g The green value (0.0-1.0)
+         * @param b The blue value (0.0-1.0)
          */
-        void setColor(short r, short g, short b);
+        void setColor(float r, float g, float b);
 
         /**
          * @brief Sets the red, green, blue and alpha value of the color
-         * @param r The red value
-         * @param g The green value
-         * @param b The blue value
-         * @param a The alpha value
-         */
-        void setColor(short r, short g, short b, short a);
-
-        /**
-         * @brief Sets the red, green, blue and alpha value of the color
-         * @param r The red value
-         * @param g The green value
-         * @param b The blue value
+         * @param r The red value (0.0-1.0)
+         * @param g The green value (0.0-1.0)
+         * @param b The blue value (0.0-1.0)
          * @param a The alpha value (0.0-1.0)
          */
-        void setColor(short r, short g, short b, float a);
+        void setColor(float r, float g, float b, float a);
 
         /**
          * @brief Sets the red value of the color
-         * @param r The red value
+         * @param r The red value (0.0-1.0)
          */
-        void setRed(short r);
+        void setRed(float r);
 
         /**
          * @brief Returns the red value of the color
-         * @return The red value
+         * @return The red value (0.0-1.0)
          */
-        short getRed();
+        float getRed();
 
         /**
          * @brief Sets the green value of the color
-         * @param g The green value
+         * @param g The green value (0.0-1.0)
          */
-        void setGreen(short g);
+        void setGreen(float g);
 
         /**
          * @brief Returns the green value of the color
-         * @return The green value
+         * @return The green value (0.0-1.0)
          */
-        short getGreen();
+        float getGreen();
 
         /**
          * @brief Sets the blue value of the color
-         * @param b The blue value
+         * @param b The blue value (0.0-1.0)
          */
-        void setBlue(short b);
+        void setBlue(float b);
 
         /**
          * @brief Returns the blue value of the color
-         * @return The blue value
+         * @return The blue value (0.0-1.0)
          */
-        short getBlue();
-
-        /**
-         * @brief Sets the alpha value of the color
-         * @param a The alpha value
-         */
-        void setAlpha(short a);
+        float getBlue();
 
         /**
          * @brief Sets the alpha value of the color
@@ -120,13 +96,13 @@ namespace horizon {
 
         /**
          * @brief Returns the alpha value of the color
-         * @return The alpha value
+         * @return The alpha value (0.0-1.0)
          */
-        short getAlpha();
+        float getAlpha();
 
     private:
         /* data */
-        short m_red, m_green, m_blue, m_alpha;
+        float m_red, m_green, m_blue, m_alpha;
     };
 } /* horizon */
 

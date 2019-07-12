@@ -2,82 +2,65 @@
 
 namespace horizon {
     Color::Color() :
-        m_red(0),
-        m_green(0),
-        m_blue(0),
-        m_alpha(255) { /* do nothing */ }
+        m_red(0.f),
+        m_green(0.f),
+        m_blue(0.f),
+        m_alpha(1.f) { /* do nothing */ }
 
-    Color::Color(short r, short g, short b) :
+    Color::Color(float r, float g, float b) :
         m_red(r),
         m_green(g),
         m_blue(b),
-        m_alpha(255) { /* do nothing */ }
+        m_alpha(1.f) { /* do nothing */ }
 
-    Color::Color(short r, short g, short b, short a) :
+    Color::Color(float r, float g, float b, float a) :
         m_red(r),
         m_green(g),
         m_blue(b),
         m_alpha(a) { /* do nothing */ }
 
-    Color::Color(short r, short g, short b, float a) :
-        m_red(r),
-        m_green(g),
-        m_blue(b),
-        m_alpha(a * 255) { /* do nothing */ }
-
-    void Color::setColor(short r, short g, short b) {
+    void Color::setColor(float r, float g, float b) {
         m_red = r;
         m_green = g;
         m_blue = b;
     }
 
-    void Color::setColor(short r, short g, short b, short a) {
+    void Color::setColor(float r, float g, float b, float a) {
         m_red = r;
         m_green = g;
         m_blue = b;
         m_alpha = a;
     }
 
-    void Color::setColor(short r, short g, short b, float a) {
-        m_red = r;
-        m_green = g;
-        m_blue = b;
-        m_alpha = a * 255;
-    }
-
-    void Color::setRed(short r) {
+    void Color::setRed(float r) {
         m_red = r;
     }
 
-    short Color::getRed() {
+    float Color::getRed() {
         return m_red;
     }
 
-    void Color::setGreen(short g) {
+    void Color::setGreen(float g) {
         m_green = g;
     }
 
-    short Color::getGreen() {
+    float Color::getGreen() {
         return m_green;
     }
 
-    void Color::setBlue(short b) {
+    void Color::setBlue(float b) {
         m_blue = b;
     }
 
-    short Color::getBlue() {
+    float Color::getBlue() {
         return m_blue;
     }
 
-    void Color::setAlpha(short a) {
+    void Color::setAlpha(float a) {
         m_alpha = a;
     }
 
-    void Color::setAlpha(float a) {
-        m_alpha = a * 255;
-    }
-
-    short Color::getAlpha() {
+    float Color::getAlpha() {
         return m_alpha;
     }
 } /* horizon */
