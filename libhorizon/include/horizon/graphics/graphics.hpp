@@ -8,5 +8,7 @@
 #pragma once
 
 #include "color.hpp"
+#include "renderTarget.hpp"
+#include "screen.hpp"
 
 #endif /* end of include guard: GRAPHICS_HPP */
