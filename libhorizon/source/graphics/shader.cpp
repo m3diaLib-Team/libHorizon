@@ -47,12 +47,12 @@ namespace horizon {
         return compile(source, type);
     }
 
-    horizon::Shader::Type Shader::getType() {
+    horizon::Shader::Type Shader::getType() const {
         return m_type;
     }
 
     // protected
-    GLint Shader::getShader() {
+    GLint Shader::getShader() const {
         return m_shader;
     }
 

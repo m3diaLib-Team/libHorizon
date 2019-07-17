@@ -55,13 +55,13 @@ namespace horizon {
          * @brief Returns the type of the shader
          * @return The shader type
          */
-        horizon::Shader::Type getType();
+        horizon::Shader::Type getType() const;
 
         /**
          * @brief Returns the shader ready to be used with OpenGL
          * @return The shader
          */
-        GLint getShader();
+        GLint getShader() const;
 
         /**
          * @brief Converts a horizon::Shader::Type to an OpenGL shader type
