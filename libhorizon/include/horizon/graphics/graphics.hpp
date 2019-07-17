@@ -10,5 +10,9 @@
 #include "color.hpp"
 #include "renderTarget.hpp"
 #include "screen.hpp"
+#include "shader.hpp"
+#include "shaderManager.hpp"
+#include "shaderProgram.hpp"
+#include "vertex.hpp"
 
 #endif /* end of include guard: GRAPHICS_HPP */
