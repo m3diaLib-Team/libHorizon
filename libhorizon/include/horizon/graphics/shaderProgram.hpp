@@ -63,7 +63,7 @@ namespace horizon {
         /**
          * @brief Uses the shader program
          */
-        void use();
+        void use() const;
 
     private:
         /* data */

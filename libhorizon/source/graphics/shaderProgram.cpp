@@ -46,7 +46,7 @@ namespace horizon {
         m_program = glCreateProgram();
     }
 
-    void ShaderProgram::use() {
+    void ShaderProgram::use() const {
         glUseProgram(m_program);
     }
 } /* horizon */
