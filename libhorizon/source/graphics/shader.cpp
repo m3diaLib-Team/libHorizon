@@ -56,7 +56,7 @@ namespace horizon {
         return m_shader;
     }
 
-    GLenum Shader::typeToGL(horizon::Shader::Type type) const {
+    GLenum Shader::typeToGL(horizon::Shader::Type type) {
         switch (type) {
         case horizon::Shader::Type::Vertex:
             return GL_VERTEX_SHADER;

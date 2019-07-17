@@ -68,7 +68,7 @@ namespace horizon {
          * @param  type The type to convert
          * @return      The converted type
          */
-        GLenum typeToGL(horizon::Shader::Type type) const;
+        static GLenum typeToGL(horizon::Shader::Type type);
 
     private:
         /* data */
