@@ -11,7 +11,6 @@
 #include "renderTarget.hpp"
 #include "screen.hpp"
 #include "shader.hpp"
-#include "shaderManager.hpp"
 #include "shaderProgram.hpp"
 #include "vertex.hpp"
 
