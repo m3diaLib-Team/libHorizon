@@ -4,49 +4,62 @@
 #include <stdio.h>
 
 namespace horizon {
-    ShaderProgram::ShaderProgram(const std::string& name) :
-        m_name(name) {
-        m_program = glCreateProgram();
-
-        if (name != "") {
-            // TODO: Add program to shader manager
-        }
-    }
+    ShaderProgram::ShaderProgram() :
+        m_program(0) { /* do nothing */ }
 
     ShaderProgram::~ShaderProgram() {
         glDeleteProgram(m_program);
     }
 
-    const std::string ShaderProgram::getName() {
-        return m_name;
-    }
+    ShaderProgram& ShaderProgram::attach(const horizon::Shader& shader) {
+        if (m_program == 0) {
+            m_program = glCreateProgram();
+            m_created = true;
+        }
 
-    void ShaderProgram::attach(const horizon::Shader& shader) {
-        glAttachShader(m_program, shader.getShader());
+        glAttachShader(m_program, shader.getID());
+        return *this;
     }
 
     bool ShaderProgram::link() {
-        glLinkProgram(m_program);
-
         GLint success;
         glGetProgramiv(m_program, GL_LINK_STATUS, &success);
 
         if (!success) {
-            char buf[512];
-            glGetProgramInfoLog(m_program, sizeof(buf), nullptr, buf);
-            printf("ShaderProgram: Link error: %s", buf);
-            return false;
+            glLinkProgram(m_program);
+            glGetProgramiv(m_program, GL_LINK_STATUS, &success);
+
+            if (!success) {
+                char buf[512];
+                glGetProgramInfoLog(m_program, sizeof(buf), nullptr, buf);
+                printf("ShaderProgram: Link error: %s", buf);
+                return false;
+            }
+
+            return true;
         }
 
-        return true;
+        return false;
     }
 
     void ShaderProgram::reset() {
-        glDeleteProgram(m_program);
-        m_program = glCreateProgram();
+        if (m_program != 0) {
+            glDeleteProgram(m_program);
+            m_program = glCreateProgram();
+            m_linked = false;
+        }
     }
 
     void ShaderProgram::use() const {
-        glUseProgram(m_program);
+        GLint success;
+        glGetProgramiv(m_program, GL_LINK_STATUS, &success);
+
+        if (success) {
+            glUseProgram(m_program);
+        }
+    }
+
+    const unsigned int ShaderProgram::getID() const {
+        return m_program;
     }
 } /* horizon */

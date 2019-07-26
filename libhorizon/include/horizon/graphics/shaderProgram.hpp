@@ -15,18 +15,13 @@ namespace horizon {
 
     /**
      * @brief Combines multiple different shaders in order to use them in union
-     *
-     * In order to load and switch between shader-programs easier, please refer to horizon::ShaderManager.
      */
     class ShaderProgram {
     public:
         /*
          * @brief Constructs the shader program
-         * @param name The name of the program, for the shader manager. See horizon::ShaderManager for more information
-         *
-         * Leave `name` blank if you don't want to add the program to the shader manager.
          */
-        explicit ShaderProgram(const std::string& name = "");
+        ShaderProgram();
 
         /**
          * @brief Destructs the shader program
@@ -34,18 +29,11 @@ namespace horizon {
         ~ShaderProgram();
 
         /**
-         * @brief Returns the name of the program
-         * @return The name
-         *
-         * For more information, please refer to horizon::ShaderManager.
-         */
-        const std::string getName();
-
-        /**
          * @brief Attaches the given shader to the program
          * @param shader The shader to attach
+         * @return       This shader-program, in order to easily attach multiple shaders
          */
-        void attach(const horizon::Shader& shader);
+        ShaderProgram& attach(const horizon::Shader& shader);
 
         /**
          * @brief Links the shader program
@@ -65,10 +53,17 @@ namespace horizon {
          */
         void use() const;
 
+        /**
+         * @brief Returns the ID of the OpenGL-program
+         * @return The ID
+         */
+        const unsigned int getID() const;
+
     private:
         /* data */
+        bool m_created, m_linked;
         std::string m_name;
-        GLuint m_program;
+        unsigned int m_program;
     };
 } /* horizon */
 
