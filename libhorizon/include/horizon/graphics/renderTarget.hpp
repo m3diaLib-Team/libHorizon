@@ -19,6 +19,11 @@ namespace horizon {
         RenderTarget();
 
         /**
+         * @brief Destructs the rendertarget
+         */
+        ~RenderTarget();
+
+        /**
          * @brief Binds the rendertarget
          *
          * This causes all rendering to be redirected to this rendertarget
