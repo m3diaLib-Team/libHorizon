@@ -9,7 +9,6 @@
 
 #include <EGL/egl.h>
 #include "color.hpp"
-#include "renderTarget.hpp"
 
 namespace horizon {
     /**
