@@ -1,5 +1,5 @@
 /**
- * @file core.hpp
+ * @file graphics.hpp
  * @brief Includes all graphics-related files of libhorizon
  */
 #ifndef GRAPHICS_HPP
