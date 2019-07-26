@@ -30,7 +30,7 @@ namespace horizon {
          * @brief Creates the applet
          * @param enableNxlinkStdio Whether you want to enable nxlinkStdio or not
          */
-        Applet(bool enableNxlinkStdio = true);
+        explicit Applet(bool enableNxlinkStdio = true);
 
         /**
          * @brief Destructs the applet
