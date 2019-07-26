@@ -15,27 +15,32 @@ namespace horizon {
         GLint success;
         GLchar msg[512];
 
-        GLuint handle = glCreateShader(glType);
+        glGetShaderiv(m_shader, GL_COMPILE_STATUS, &success);
 
-        if (!handle) {
+        if (success) {
+            glDeleteShader(m_shader);
+        }
+
+        m_shader = glCreateShader(glType);
+
+        if (!m_shader) {
             printf("OpenGL: %u: cannot create shader", glType);
             return false;
         }
 
         const char* src = source.c_str();
 
-        glShaderSource(handle, 1, &src, nullptr);
-        glCompileShader(handle);
-        glGetShaderiv(handle, GL_COMPILE_STATUS, &success);
+        glShaderSource(m_shader, 1, &src, nullptr);
+        glCompileShader(m_shader);
+        glGetShaderiv(m_shader, GL_COMPILE_STATUS, &success);
 
         if (!success) {
-            glGetShaderInfoLog(handle, sizeof(msg), nullptr, msg);
+            glGetShaderInfoLog(m_shader, sizeof(msg), nullptr, msg);
             printf("OpenGL: %u: %s\n", glType, msg);
-            glDeleteShader(handle);
+            glDeleteShader(m_shader);
             return false;
         }
 
-        m_shader = handle;
         return true;
     }
 
