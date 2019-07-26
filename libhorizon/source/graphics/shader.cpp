@@ -56,8 +56,7 @@ namespace horizon {
         return m_type;
     }
 
-    // protected
-    GLint Shader::getID() const {
+    unsigned int Shader::getID() const {
         return m_shader;
     }
 
