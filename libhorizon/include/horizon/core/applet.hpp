@@ -213,10 +213,14 @@ namespace horizon {
         };
         /** @}*/
 
+        static void initNxLink();
+
+        static void deinitNxLink();
+
     private:
         /* data */
         static bool m_running;
-        static int m_currentFrame;
+        static int m_currentFrame, m_nxlinkSock;
     };
 } /* horizon */
 

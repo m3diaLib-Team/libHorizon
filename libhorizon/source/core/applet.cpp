@@ -6,11 +6,11 @@
 namespace horizon {
     bool Applet::m_running = false;
     int Applet::m_currentFrame = 0;
+    int Applet::m_nxlinkSock = 0;
 
     Applet::Applet(bool enableNxlinkStdio) {
              if (!m_running) {
-                 socketInitializeDefault();
-                 if (enableNxlinkStdio) nxlinkStdio();
+                 if (enableNxlinkStdio) initNxLink();
                  appletInitializeGamePlayRecording();
 
                  m_running = true;
@@ -20,13 +20,13 @@ namespace horizon {
     Applet::~Applet() {
         appletEndBlockingHomeButton();
         socketExit();
+        deinitNxLink();
     }
 
     bool Applet::isRunning() {
         if (!appletMainLoop()) return false;
 
         Input::scanInput();
-        consoleUpdate(NULL);
         m_currentFrame++;
 
         return m_running;
@@ -167,5 +167,27 @@ namespace horizon {
     void Applet::Error::setErrorCode(int module, int description) {
         m_moduleCode = module;
         m_descriptionCode = description;
+    }
+
+    void Applet::initNxLink()
+    {
+        if (R_FAILED(socketInitializeDefault()))
+            return;
+
+        m_nxlinkSock = nxlinkStdio();
+        if (m_nxlinkSock >= 0)
+            printf("Stdout now goes to the nxlink server\n");
+        else
+            socketExit();
+    }
+
+    void Applet::deinitNxLink()
+    {
+        if (m_nxlinkSock >= 0)
+        {
+            close(m_nxlinkSock);
+            socketExit();
+            m_nxlinkSock = -1;
+        }
     }
 } /* horizon */
