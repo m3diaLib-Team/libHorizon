@@ -21,7 +21,7 @@
      * @def HORIZON_NO_LIBNX
      * @brief If set, this disables the automatic inclusion of libnx, allowing you to use your own fork instead
      *
-     * @note This is useful if you use the horizoniaLib in places where the official libnx doesn't work.
+     * @note This is useful if you use the horizonLib in places where the official libnx doesn't work.
      */
     #define HORIZON_NO_LIBNX
 
