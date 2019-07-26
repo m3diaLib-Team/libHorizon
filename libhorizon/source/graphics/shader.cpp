@@ -52,7 +52,7 @@ namespace horizon {
     }
 
     // protected
-    GLint Shader::getShader() const {
+    GLint Shader::getID() const {
         return m_shader;
     }
 
